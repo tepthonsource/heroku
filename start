@@ -3,12 +3,12 @@
 _get_zlink () {
     local regex
     regex='(https?)://github.com/.+/.+'
-    if [[ $UPSTREAM_REPO == "goodcat" ]]
+    if [[ $UPSTREAM_REPO == "tep" ]]
     then
-        echo "aHR0cHMvL2dpdGh1Yi5jb20vdGVwdGhvbnNvdXJjZS90aGV0ZXB0aG9uL2FyY2hpdmUvbWFzdGVyLnppcA==" | base64 -d
+        echo "aHR0cHMvL2dpdGh1Yi5jb20vdGVwdGhvbnNvdXJjZS91c2VyYm90L2FyY2hpdmUvbWFzdGVyLnppcA==" | base64 -d
     elif [[ $UPSTREAM_REPO == "badcat" ]]
     then
-        echo "aHR0cHMvL2dpdGh1Yi5jb20vdGVwdGhvbnNvdXJjZS90aGV0ZXB0aG9uL2FyY2hpdmUvbWFzdGVyLnppcA==" | base64 -d
+        echo "aHR0cHMvL2dpdGh1Yi5jb20vdGVwdGhvbnNvdXJjZS91c2VyYm90L2FyY2hpdmUvbWFzdGVyLnppcA==" | base64 -d
     elif [[ $UPSTREAM_REPO =~ $regex ]]
     then
         if [[ $UPSTREAM_REPO_BRANCH ]]
@@ -18,7 +18,7 @@ _get_zlink () {
             echo "${UPSTREAM_REPO}/archive/master.zip"
         fi
     else
-        echo "aHR0cHMvL2dpdGh1Yi5jb20vdGVwdGhvbnNvdXJjZS90aGV0ZXB0aG9uL2FyY2hpdmUvbWFzdGVyLnppcA==" | base64 -d
+        echo "aHR0cHMvL2dpdGh1Yi5jb20vdGVwdGhvbnNvdXJjZS91c2VyYm90L2FyY2hpdmUvbWFzdGVyLnppcA==" | base64 -d
     fi
 }
 
@@ -28,15 +28,15 @@ _get_repolink () {
     regex='(https?)://github.com/.+/.+'
     if [[ $UPSTREAM_REPO == "goodcat" ]]
     then
-        rlink=`echo "aHR0cHM6Ly9naXRodWIvdGVwdGhvbnNvdXJjZS90aGV0ZXB0aG9u==" | base64 -d`
+        rlink=`echo "aHR0cHM6Ly9naXRodWIuY29tL3RlcHRob25zb3VyY2UvdXNlcmJvdA==" | base64 -d`
     elif [[ $UPSTREAM_REPO == "badcat" ]]
     then
-        rlink=`echo "aHR0cHM6Ly9naXRodWIvdGVwdGhvbnNvdXJjZS90aGV0ZXB0aG9u==" | base64 -d`
+        rlink=`echo "aHR0cHM6Ly9naXRodWIuY29tL3RlcHRob25zb3VyY2UvdXNlcmJvdA==" | base64 -d`
     elif [[ $UPSTREAM_REPO =~ $regex ]]
     then
         rlink=`echo "${UPSTREAM_REPO}"`
     else
-        rlink=`echo "aHR0cHM6Ly9naXRodWIuY29tL1RnQ2F0VUIvY2F0dXNlcmJvdA==" | base64 -d`
+        rlink=`echo "aHR0cHM6Ly9naXRodWIuY29tL3RlcHRob25zb3VyY2UvdXNlcmJvdA==" | base64 -d`
     fi
     echo "$rlink"
 }
@@ -73,14 +73,14 @@ repo.heads[ACTIVE_BRANCH_NAME].checkout(True) ')
 
 _start_bot () {
     local zippath
-    zippath="catuserbot.zip"
-    echo "  Downloading source code ..."
+    zippath="userbot.zip"
+    echo "  جاري تحميل الملفات ..."
     wget -q $(_get_zlink) -O "$zippath"
     echo "  Unpacking Data ..."
     CATPATH=$(zipinfo -1 "$zippath" | grep -v "/.");
     unzip -qq "$zippath"
-    echo "Done"
-    echo "  Cleaning ..."
+    echo "تم"
+    echo "  جاري التنظيف ..."
     rm -rf "$zippath"
     _run_catpackgit
     cd $CATPATH
