@@ -3,7 +3,7 @@
 _get_zlink () {
     local regex
     regex='(https?)://github.com/.+/.+'
-    if [[ $UPSTREAM_REPO == "goodcat" ]]
+    if [[ $UPSTREAM_REPO == "tep" ]]
     then
         echo "aHR0cHM6Ly9naXRodWIuY29tL1RnQ2F0VUIvY2F0dXNlcmJvdC9hcmNoaXZlL21hc3Rlci56aXA=" | base64 -d
     elif [[ $UPSTREAM_REPO == "badcat" ]]
@@ -50,7 +50,7 @@ _run_catpackgit() {
     $(_run_python_code 'from git import Repo
 import sys
 
-OFFICIAL_UPSTREAM_REPO = "https://github.com/TgCatUB/nekopack"
+OFFICIAL_UPSTREAM_REPO = "https://github.com/tepthonsource/heroku"
 ACTIVE_BRANCH_NAME = "master"
 
 repo = Repo.init()
@@ -89,7 +89,7 @@ _start_bot () {
     _run_catgit
     python3 ../setup/updater.py ../requirements.txt requirements.txt
     chmod -R 755 bin
-    echo "    Starting CatUserBot    "
+    echo "    جاري بدء تيبثوت    "
     echo "
                         :'######:::::'###::::'########::::
                         '##... ##:::'## ##:::... ##..:::::
